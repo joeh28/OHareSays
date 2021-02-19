@@ -3,9 +3,12 @@
 include( "../includes/db_admin.php" );
 
 //variables from the user/program/game
-$Init = $_GET["playerName"];
-$Score = $_GET["highscore"];
-$Secret = $_GET["Secret"];
+//$Init = $_GET["playerName"];
+//$Score = $_GET["highscore"];
+//$Secret = $_GET["Secret"];
+$Init = "AAA";
+$Score = "1";
+$Secret = "kIkxPvHc2uK3DWFBzzPSDNEwAlOAc7wH";
 
 if($Secret != "kIkxPvHc2uK3DWFBzzPSDNEwAlOAc7wH")
 {
