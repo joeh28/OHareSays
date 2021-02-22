@@ -18,7 +18,7 @@
 		
 		
 	//SQL Command to get player info
-	$sql = "SELECT TOP 5 playername, highscore FROM OhareSays ORDER BY highscore DESC";
+	$sql = "SELECT TOP 5 FROM OhareSays ORDER BY highscore DESC";
 	$result = $conn->query($sql);
 	
 	if ($result->num_rows > 0)
