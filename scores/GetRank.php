@@ -1,5 +1,5 @@
 <?php
-        include 'mysql_connect.php';
+        include 'db_connect.php';
 
     $name = mysqli_real_escape_string($conn, $_GET['name']); 
     

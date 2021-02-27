@@ -1,5 +1,5 @@
 <?php
-    include 'mysql_connect.php';
+    include 'db_connect.php';
 
     if (isset($_GET['game'])) {
       $game = mysqli_real_escape_string($conn, $_GET['game']);

@@ -1,5 +1,5 @@
 <?php
-    include 'mysql_connect.php';
+    include 'db_connect.php';
 
         $game = mysqli_real_escape_string($conn, $_GET['game']);
         if (isset($_GET['order_by'])) {

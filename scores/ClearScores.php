@@ -1,6 +1,6 @@
 <?php 
 
-        include 'mysql_connect.php';
+        include 'db_connect.php';
         include 'update_key.php';
         //These are our variables.
 
