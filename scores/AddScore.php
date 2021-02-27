@@ -2,7 +2,7 @@
 
 	$debug = false;
 
-        include 'mysql_connect.php';
+        include( "../includes/db_connect.php" );
         //These are our variables.
         //We use real escape string to stop people from injecting. We handle this in Unity too, but it's important we do it here as well in case people extract our url.
         $redirect_url = "https://levidsmith.com/scores/DisplayScores.html";
