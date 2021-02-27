@@ -33,17 +33,14 @@
         //If what we expect is what we have:
         if($expected_hash == $hash) { 
             // Here's our query to insert/update scores!
-           /* $query = "INSERT INTO score
+            $query = "INSERT INTO score
 SET name = '$politestring'
    , score = '$score'
    , game = '$game'
    , ts = CURRENT_TIMESTAMP
 ON DUPLICATE KEY UPDATE
-   ts = if('$score'>score,CURRENT_TIMESTAMP,ts), score = if ('$score'>score, '$score', score);"; */
+   ts = if('$score'>score,CURRENT_TIMESTAMP,ts), score = if ('$score'>score, '$score', score);";
    
-    $query = "INSERT INTO score (name, score, game, ts) Values ($politestring, $score, $game, CURRENT_TIMESTAMP)
-	ON DUPLICATE KEY UPDATE
-	ts = if('$score'>score,CURRENT_TIMESTAMP,ts), score = if ('$score'>score, '$score', score);"; 
             //And finally we send our query.
             $result = mysqli_query($conn, $query) or die('Query failed: ' . mysqli_error()); 
             echo "<html><head>";
