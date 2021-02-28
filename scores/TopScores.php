@@ -1,43 +1,31 @@
-<?php
-    include 'db_connect.php';
+<?php 
 
-        $game = mysqli_real_escape_string($conn, $_GET['game']);
-        if (isset($_GET['order_by'])) {
-            $order_by = mysqli_real_escape_string($conn, $_GET['order_by']);
-        } else {
-            $order_by = 'DESC';
-        }
-        
-        $unique = "1";
- 
-     //This query grabs the top 10 scores, sorting by score and timestamp.
-    if ($unique != "0") {
-        $query = "SELECT name, MAX(score) as score FROM score";
-        $query .= " WHERE game =  " . $game;
-        $query .= " GROUP BY name";
+	//get connection string
+	include( "db_connect.php" );
+	$conn = sqlsrv_connect( $serverName, $connectionInfo);
+	
+	//test connection string
+	if( $conn === false ) {
+    die( print_r( sqlsrv_errors(), true));
+	}
 
-    } else {
-        $query = "SELECT * FROM score WHERE game=$game ";
-    }
-    if ($order_by == 'ASC') {
-      $query .= " ORDER BY score ASC, ";
-    } elseif ($order_by == 'DESC') {
-      $query .= " ORDER BY score DESC, ";
-    } else {
-      $query .= " ORDER BY score DESC, ";
+	//get name and score for leaderboard
+	$query = "SELECT * FROM score ORDER BY score DESC";   
+	$stmt = sqlsrv_query( $conn, $query) or die('Query failed: ' . sqlsrv_errors());
 
-    }
-    $query .= "ts ASC LIMIT 10";
-   
-    $result = sqlsrv_query($conn, $query) or die('Query failed: ' . sqlsrv_errors());
- 
-    //We find our number of rows
-    $result_length = sqlsrv_num_rows($result); 
-    
-    //And now iterate through our results
-    for($i = 0; $i < $result_length; $i++)
-    {
-         $row = sqlsrv_fetch_array($result);
-         echo $row['name'] . "\t" . $row['score'] . "\n"; // And output them
-    }
+	if( $stmt === false) {
+    die( print_r( sqlsrv_errors(), true) );
+	}
+	while( $row = sqlsrv_fetch_array( $stmt, SQLSRV_FETCH_ASSOC) ) {
+      echo $row['name']. "\t" .$row['score']."\r\n";
+
+	}
+	
+	//free resources
+	sqlsrv_free_stmt( $stmt);
+	
+	//close connection
+	sqlsrv_close( $conn );
+
+
 ?>
