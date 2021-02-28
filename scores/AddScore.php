@@ -16,9 +16,7 @@
 	$score = $_GET['score']; 
 	$game = $_GET['game']; 
 	$hash = $_GET['hash']; 
-		
-		
-
+				
 	// query to insert/update scores!
 	$query = "INSERT INTO score (name, score, game) VALUES ('".$name."'".",".$score.",".$game.");";
 

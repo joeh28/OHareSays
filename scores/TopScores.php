@@ -27,5 +27,4 @@
 	//close connection
 	sqlsrv_close( $conn );
 
-
 ?>
