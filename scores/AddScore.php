@@ -20,8 +20,8 @@
 		$secretKey="M3H67BNjs0ukNH4UYaMQe";
         //Query the game's leaderboard key from the database
         $query_leaderboard_key = "SELECT leaderboard_key FROM game WHERE id = " . $game;
-        $result = mysqli_query($conn, $query_leaderboard_key) or die('Query failed: ' . mysqli_error());
-        $row = mysqli_fetch_row($result);
+        $result = sqlsrv_query($conn, $query_leaderboard_key) or die('Query failed: ' . sqlsrv_errors());
+        $row = sqlsrv_fetch($result);
         //$secretKey = trim($row[0]);
 		$secretKey = "M3H67BNjs0ukNH4UYaMQe";
 //#        echo "***" . $secretKey . "***<br>";
@@ -42,7 +42,7 @@ ON DUPLICATE KEY UPDATE
    ts = if('$score'>score,CURRENT_TIMESTAMP,ts), score = if ('$score'>score, '$score', score);";
    
             //And finally we send our query.
-            $result = mysqli_query($conn, $query) or die('Query failed: ' . mysqli_error()); 
+            $result = sqlsrv_query($conn, $query) or die('Query failed: ' . sqlsrv_errors()); 
             echo "<html><head>";
             echo '<meta http-equiv="refresh" content="0; url=' . $redirect_url . '" />';
             echo "</head><body>";

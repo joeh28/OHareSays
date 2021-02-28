@@ -37,17 +37,17 @@
     }
     $query_game .= " ORDER BY name ASC ";
   
-    $result = mysqli_query($conn, $query_game) or die('Query failed: ' . mysqli_error());
+    $result = sqlsrv_query($conn, $query_game) or die('Query failed: ' . sqlsrv_errors());
  
     //We find our number of rows
-    $result_length = mysqli_num_rows($result); 
+    $result_length = sqlsrv_num_rows($result); 
 
     echo "{\n";
     echo "\t" . '"games": [' . "\n";
     
     //And now iterate through our results
     for($i = 0; $i < $result_length; $i++) {
-         $row = mysqli_fetch_array($result);
+         $row = sqlsrv_fetch_array($result);
          echo "\t\t" . '{' . "\n"; 
          echo "\t\t\t" . '"name": "' . $row['name'] .  '",' . "\n"; 
          echo "\t\t\t" . '"download_url": "' . $row['download_url'] .  '",' . "\n"; 
@@ -86,8 +86,8 @@
 
          $query_scores .= " LIMIT " . $score_limit_value;
 
-         $result_scores = mysqli_query($conn, $query_scores) or die('');
-         $result_scores_length = mysqli_num_rows($result_scores); 
+         $result_scores = sqlsrv_query($conn, $query_scores) or die('');
+         $result_scores_length = sqlsrv_num_rows($result_scores); 
          if ($result_scores_length > 0) {
            echo ',' . "\n"; 
            echo "\t\t\t" . '"scores": [' . "\n"; 
@@ -96,7 +96,7 @@
          }
 
          for($j = 0; $j < $result_scores_length; $j++) {
-           $row_scores = mysqli_fetch_array($result_scores);
+           $row_scores = sqlsrv_fetch_array($result_scores);
            echo "\t\t\t\t" . '{' . "\n";
            echo "\t\t\t\t\t" . '"name": "' . $row_scores['name'] . '",' . "\n";
 

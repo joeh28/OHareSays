@@ -25,13 +25,13 @@
         //If what we expect is what we have:
         if($expected_hash == $hash) { 
             // Here's our query to insert/update scores!
-            $query = 'INSERT INTO game (id, name, order_method, score_format, metric, download_url) ' .
-                     'VALUES (' . $id . ", '" . $name . "'," . 
+            $query = "INSERT INTO game (id, name, order_method, score_format, metric, download_url) " .
+                     "VALUES (" . $id . ", '" . $name . "'," . 
                      "0, NULL, 'Points Scored', " .
-                     "'" . $download_url . "'" . ')' ; 
+                     "'" . $download_url . "'" . ')' ;
 
             //And finally we send our query.
-            $result = mysqli_query($conn, $query) or die('Query failed: ' . mysqli_error()); 
+            $result = sqlsrv_query($conn, $query) or die('Query failed: ' .sqlsrv_errors()); 
             echo "<html><head>";
 //            echo '<meta http-equiv="refresh" content="0; url=' . $redirect_url . '" />';
             echo "</head><body>";

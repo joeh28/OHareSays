@@ -10,19 +10,19 @@
       $query = "SELECT  uo.*, 
           (
           SELECT  COUNT(*)
-          FROM    Score ui
+          FROM    score ui
           WHERE   (ui.score, -ui.ts) >= (uo.score, -uo.ts)
           ) AS rank
-      FROM    Score uo
+      FROM    score uo
       WHERE   name = '$politestring';";
-      $result = mysqli_query($conn, $query) or die('Query failed: ' . mysqli_error());
+      $result = sqlsrv_query($conn, $query) or die('Query failed: ' . sqlsrv_errors());
       
       //This is more elaborate than we need, considering we're only grabbing one rank, but you can modify it if needs be.
-      $num_results = mysqli_num_rows($result);  
+      $num_results = sqlsrv_num_rows($result);  
       
       for($i = 0; $i < $num_results; $i++)
       {
-           $row = mysqli_fetch_array($result);
+           $row = sqlsrv_fetch_array($result);
            echo $row['rank'] . "\n";
       }
 
