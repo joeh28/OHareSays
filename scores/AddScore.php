@@ -26,11 +26,10 @@
 	$result = sqlsrv_query($conn, $query) or die('Query failed: ' . sqlsrv_errors()); 
 			
 			
-	//clear objects
+	//free resources
 	sqlsrv_free_stmt($result);
 	
 	//close connection
 	sqlsrv_close( $conn );
-
 
 ?>

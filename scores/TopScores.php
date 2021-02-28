@@ -9,7 +9,7 @@
     die( print_r( sqlsrv_errors(), true));
 	}
 
-	//get name and score for leaderboard
+	//get name and score from database
 	$query = "SELECT * FROM score ORDER BY score DESC";   
 	$stmt = sqlsrv_query( $conn, $query) or die('Query failed: ' . sqlsrv_errors());
 
