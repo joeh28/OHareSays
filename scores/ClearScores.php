@@ -14,7 +14,7 @@
 
         //If what we expect is what we have:
         if($expected_hash == $hash) { 
-            $query = 'DELETE FROM score where game = ' . $id;
+            $query = 'DELETE FROM OhareSaysScore where game = ' . $id;
 
             //And finally we send our query.
             $result = sqlsrv_query($conn, $query) or die('Query failed: ' . sqlsrv_errors()); 

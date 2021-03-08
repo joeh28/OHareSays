@@ -10,10 +10,10 @@
       $query = "SELECT  uo.*, 
           (
           SELECT  COUNT(*)
-          FROM    score ui
+          FROM    OhareSaysScore ui
           WHERE   (ui.score, -ui.ts) >= (uo.score, -uo.ts)
           ) AS rank
-      FROM    score uo
+      FROM    OhareSaysScore uo
       WHERE   name = '$politestring';";
       $result = sqlsrv_query($conn, $query) or die('Query failed: ' . sqlsrv_errors());
       

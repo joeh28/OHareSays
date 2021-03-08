@@ -10,7 +10,7 @@
 	}
 
 	//get name and score from database
-	$query = "SELECT SUBSTRING(name, 1, 3) AS name, score FROM score ORDER BY score DESC;";   
+	$query = "SELECT SUBSTRING(name, 1, 3) AS name, score FROM OhareSaysScore ORDER BY score DESC;";   
 	$stmt = sqlsrv_query( $conn, $query) or die('Query failed: ' . sqlsrv_errors());
 
 	if( $stmt === false) {

@@ -18,7 +18,7 @@
 	$hash = $_GET['hash']; 
 				
 	// query to insert/update scores!
-	$query = "INSERT INTO score (name, score, game) VALUES ('".$name."'".",".$score.",".$game.");";
+	$query = "INSERT INTO OhareSaysScore (name, score, game) VALUES ('".$name."'".",".$score.",".$game.");";
 
 	//And finally we send our query.
 	$result = sqlsrv_query($conn, $query) or die('Query failed: ' . sqlsrv_errors()); 

@@ -25,7 +25,7 @@
         //If what we expect is what we have:
         if($expected_hash == $hash) { 
             // Here's our query to insert/update scores!
-            $query = "INSERT INTO game (id, name, order_method, score_format, metric, download_url) " .
+            $query = "INSERT INTO OhareSaysGame (id, name, order_method, score_format, metric, download_url) " .
                      "VALUES (" . $id . ", '" . $name . "'," . 
                      "0, NULL, 'Points Scored', " .
                      "'" . $download_url . "'" . ')' ;

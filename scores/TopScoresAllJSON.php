@@ -31,7 +31,7 @@
 
  
      //This query grabs the top $score_limit_value scores, sorting by score and timestamp.
-    $query_game = "SELECT id, name, order_method, score_format, metric, download_url FROM game";
+    $query_game = "SELECT id, name, order_method, score_format, metric, download_url FROM OhareSaysGame";
     if ($game != "") {
       $query_game .= " WHERE id = " . $game;
     }
@@ -56,20 +56,20 @@
          ### BEGIN SCORE QUERY
          if ($unique == "1") {
              if ($row['order_method'] == 0) {
-               $query_scores = "SELECT SUBSTRING(name, 1, 3) AS name, MAX(score) as score, ts FROM score";
+               $query_scores = "SELECT SUBSTRING(name, 1, 3) AS name, MAX(score) as score, ts FROM OhareSaysScore";
                $query_scores .= " WHERE game =  " . $row['id'];
                $query_scores .= " GROUP BY name";
                $query_order_by = " ORDER BY score DESC";
 
              } elseif ($row['order_method'] == 1) {
-               $query_scores = "SELECT SUBSTRING(name, 1, 3) AS name, MIN(score) as score, ts FROM score";
+               $query_scores = "SELECT SUBSTRING(name, 1, 3) AS name, MIN(score) as score, ts FROM OhareSaysScore";
                $query_scores .= " WHERE game =  " . $row['id'];
                $query_scores .= " GROUP BY name";
                $query_order_by = " ORDER BY score ASC";
              }
  
          } else {
-             $query_scores = "SELECT SUBSTRING(name, 1, 3) AS name, score, ts FROM score";
+             $query_scores = "SELECT SUBSTRING(name, 1, 3) AS name, score, ts FROM OhareSaysScore";
              $query_scores .= " WHERE game =  " . $row['id'];
              if ($row['order_method'] == 0) {
                $query_order_by = " ORDER BY score DESC";
