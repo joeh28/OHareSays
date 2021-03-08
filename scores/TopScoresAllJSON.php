@@ -56,20 +56,20 @@
          ### BEGIN SCORE QUERY
          if ($unique == "1") {
              if ($row['order_method'] == 0) {
-               $query_scores = "SELECT name, MAX(score) as score, ts FROM score";
+               $query_scores = "SELECT SUBSTRING(name, 1, 3) AS name, MAX(score) as score, ts FROM score";
                $query_scores .= " WHERE game =  " . $row['id'];
                $query_scores .= " GROUP BY name";
                $query_order_by = " ORDER BY score DESC";
 
              } elseif ($row['order_method'] == 1) {
-               $query_scores = "SELECT name, MIN(score) as score, ts FROM score";
+               $query_scores = "SELECT SUBSTRING(name, 1, 3) AS name, MIN(score) as score, ts FROM score";
                $query_scores .= " WHERE game =  " . $row['id'];
                $query_scores .= " GROUP BY name";
                $query_order_by = " ORDER BY score ASC";
              }
  
          } else {
-             $query_scores = "SELECT name, score, ts FROM score";
+             $query_scores = "SELECT SUBSTRING(name, 1, 3) AS name, score, ts FROM score";
              $query_scores .= " WHERE game =  " . $row['id'];
              if ($row['order_method'] == 0) {
                $query_order_by = " ORDER BY score DESC";
